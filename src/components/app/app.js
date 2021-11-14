@@ -1,12 +1,18 @@
 import React from "react"
+import { Route, Switch } from "react-router";
+
+import { CartPage, HomePage } from "../pages";
 import Spinner from "../spinner/spinner";
+import withBookstoreService from '../hoc';
 
 
-const App = () => {
+const App = ({ bookstoreService }) => {
     return (
         <div>
-            <h2>Ae</h2>
-            <Spinner />
+            <Switch>
+                <Route exact path='/cart' component={CartPage} />
+                <Route path='/' component={HomePage} />
+            </Switch>
         </div>
 
     )
