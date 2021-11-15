@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { compose } from '../../utils';
 
+import Spinner from "../spinner";
 import withBookstoreService from "../hoc";
 import { booksLoaded } from '../../actions'
 
@@ -13,19 +14,21 @@ class BookList extends Component {
 
     componentDidMount() {
         // 1 recieve data
-        const { bookstoreService } = this.props;
-        const data = bookstoreService.getBooks();
-        console.log(data);
-
-
+        const { bookstoreService, booksLoaded } = this.props;
+        // const data = bookstoreService.getBooks()
+        bookstoreService.getBooks()
+            .then((data) => booksLoaded(data));
         // 2 dispatch action to store
-        this.props.booksLoaded(data);
+        // this.props.booksLoaded(data);
     }
 
     render() {
-        const { books } = this.props;
+        const { books, loading } = this.props;
+        if (loading) {
+            return <Spinner />
+        }
         return (
-            <ul>
+            <ul className="book-list">
                 {
                     books.map((book) => {
                         return (
@@ -37,12 +40,15 @@ class BookList extends Component {
         );
     }
 }
-
-const mapStateToProps = (state) => {
-    return {
-        books: state.books
-    }
-}
+// не до конца понимаю MapStates
+const mapStateToProps = ({ books, loading }) => {
+    return { books, loading }
+};
+// const mapStateToProps = (state) => {
+//     return {
+//         books: state.books
+//     }
+// }
 
 const mapDispatchToProps = {
     booksLoaded
@@ -59,7 +65,7 @@ const mapDispatchToProps = {
 //             dispatch({
 //                 type: 'BOOKS_LOADED',
 //                 payload: newBooks
-//             })
+//             })    
 //         }
 //     }
 // }
