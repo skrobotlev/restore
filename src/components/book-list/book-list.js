@@ -17,7 +17,7 @@ const BookList = ({ books }) => {
                 books.map((book) => {
                     return (
                         <li key={book.id}><BookListItem book={book} /></li>
-                    )
+                    );
                 })
             }
         </ul>
