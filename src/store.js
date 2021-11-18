@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
 import reducer from "./reducers";
+import thunkMiddleware from "redux-thunk";
 
 const logMiddleWare = ({ getState }) => (dispatch) => (action) => {
     console.log(action.type, getState());
@@ -44,7 +45,17 @@ const stringMiddleware = () => (next) => (action) => {
 //     return store;
 // }
 
-const store = createStore(reducer, applyMiddleware(stringMiddleware, logMiddleWare));
+const store = createStore(reducer,
+    applyMiddleware(thunkMiddleware, stringMiddleware, logMiddleWare));
+
+
+const delayedActionCreator = (timeout) => (dispatch) => {
+    setTimeout(() => dispatch({
+        type: 'DELAYED_ACTION'
+    }), 2000)
+}
+
+store.dispatch(delayedActionCreator(3000))
 
 // MONKEY PATCHING
 // const originalDispatch = store.dispatch;
