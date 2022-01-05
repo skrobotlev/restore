@@ -59,8 +59,3 @@ export {
     fetchBooks,
     bookAddedToCart
 };
-// export {
-//     booksLoaded,
-//     booksRequested,
-//     booksError
-// };

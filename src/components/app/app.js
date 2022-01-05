@@ -3,15 +3,15 @@ import { Route, Switch } from "react-router";
 
 import ShopHeader from "../shop-header";
 import { CartPage, HomePage } from "../pages";
-import Spinner from "../spinner/spinner";
-import withBookstoreService from '../hoc';
+// import BasicInterface from "../CALORIES/calorie-counter-app-reactjs";
 
 
 const App = ({ bookstoreService }) => {
     return (
         // MAIN?????
         <main role="main" className="container">
-            <ShopHeader numItems={5} total={210} />
+            {/* <BasicInterface /> */}
+            <ShopHeader numItems={12} total={210} />
             <Switch>
                 <Route exact path='/cart' component={CartPage} />
                 <Route path='/' component={HomePage} />

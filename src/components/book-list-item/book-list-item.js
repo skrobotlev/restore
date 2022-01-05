@@ -5,7 +5,6 @@ import './book-list-item.css'
 const BookListItem = ({ book, onAddedToCart }) => {
     const { title, author, price, coverImage } = book;
     return (
-        // БЫЛ ФРАГМЕНТ ПОЧЕМУ???
         <div className='book-list-item'>
             <div className='book-cover'>
                 <img src={coverImage} alt='cover' />
