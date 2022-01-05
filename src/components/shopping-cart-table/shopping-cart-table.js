@@ -16,6 +16,7 @@ const ShoppingCartTable = ({ items, total, onIncrease, onDecrease, onDelete }) =
                 <td>{title}</td>
                 <td>{count}</td>
                 <td>${total}</td>
+                <td><h1>AYE</h1></td>
                 <td>
                     <button onClick={() => onDelete(id)}
                         className='btn btn-outline-danger btn-small'>
